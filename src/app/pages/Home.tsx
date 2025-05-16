@@ -1,8 +1,8 @@
-import { users } from "../../db/schema";
-import { RequestInfo } from "rwsdk/worker";
+import { db } from "@/db/db";
+import { user } from "@/db/schema";
 
-const Home = async ({ ctx }: RequestInfo) => {
-  const allUsers = await ctx.db.select().from(users).all();
+const Home = async () => {
+  const allUsers = await db.select().from(user).all();
   return (
     <div>
       <h1>Hello World</h1>

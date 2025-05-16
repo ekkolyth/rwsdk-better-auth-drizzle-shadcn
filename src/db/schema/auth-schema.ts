@@ -10,6 +10,8 @@ export const user = sqliteTable("user", {
   updatedAt: integer("updated_at", { mode: "timestamp" }).notNull(),
 });
 
+export type User = typeof user.$inferSelect;
+
 export const session = sqliteTable("session", {
   id: text("id").primaryKey(),
   expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
