@@ -6,6 +6,7 @@ import { setCommonHeaders } from "src/headers";
 import { auth } from "./lib/auth";
 import { User } from "./db/schema/auth-schema";
 import { userRoutes } from "./app/pages/user/routes";
+import { env } from "cloudflare:workers";
 
 export interface Env {
   DB: D1Database;
@@ -13,11 +14,15 @@ export interface Env {
 
 export type AppContext = {
   user: User | undefined;
+  authUrl: string;
 };
 
 export default defineApp([
   setCommonHeaders(),
   async ({ ctx, request }) => {
+    // attach auth url for better auth
+    ctx.authUrl = env.BETTER_AUTH_URL;
+
     try {
       const session = await auth.api.getSession({
         headers: request.headers,
@@ -43,8 +48,8 @@ export default defineApp([
           <h1>RedwoodSDK with Better Auth and Drizzle</h1>
           <p>Welcome to this example application!</p>
           <div style={{ margin: "1.5rem 0" }}>
-            <a 
-              href="/home" 
+            <a
+              href="/home"
               style={{
                 display: "inline-block",
                 padding: "0.5rem 1rem",
@@ -52,15 +57,15 @@ export default defineApp([
                 color: "white",
                 textDecoration: "none",
                 borderRadius: "4px",
-                fontWeight: "500"
+                fontWeight: "500",
               }}
             >
               Go to Home Page
             </a>
           </div>
           <p style={{ fontSize: "0.875rem", color: "#666" }}>
-            Note: The home page is protected and requires authentication.
-            You will be redirected to login if you're not signed in.
+            Note: The home page is protected and requires authentication. You
+            will be redirected to login if you're not signed in.
           </p>
         </div>
       );

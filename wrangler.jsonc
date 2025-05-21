@@ -1,23 +1,18 @@
 {
   // Schema reference
   "$schema": "node_modules/wrangler/config-schema.json",
-
   // Worker name
-  "name": "drizzle",
-
+  "name": "rwsdk-better-auth-drizzle",
   // Entry point
   "main": "src/worker.tsx",
-
   // Compatibility settings
   "compatibility_date": "2024-09-23",
   "compatibility_flags": ["nodejs_compat"],
-
   // Assets configuration
   "assets": {
     "binding": "ASSETS",
     "directory": "public"
   },
-
   // D1 database configuration
   "d1_databases": [
     {

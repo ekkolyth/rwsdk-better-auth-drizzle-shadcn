@@ -1,9 +1,11 @@
 import { db } from "@/db/db";
 import { user } from "@/db/schema";
 import { LogoutButton } from "../shared/components";
+import { AppContext } from "@/worker";
 
-const Home = async () => {
+const Home = async ({ ctx }: { ctx: AppContext }) => {
   const allUsers = await db.select().from(user).all();
+  const { authUrl } = ctx;
 
   return (
     <div style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}>
@@ -16,7 +18,7 @@ const Home = async () => {
         }}
       >
         <h1 style={{ margin: 0 }}>Home Page</h1>
-        <LogoutButton className="button" />
+        <LogoutButton authUrl={authUrl} className="button" />
       </div>
 
       <div

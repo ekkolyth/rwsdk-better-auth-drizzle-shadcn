@@ -1,10 +1,11 @@
 "use client";
 
 import { useTransition } from "react";
-import { authClient } from "@/lib/auth-client";
+import { setupAuthClient } from "@/lib/auth-client";
 
 type LogoutButtonProps = {
   className?: string;
+  authUrl: string;
 };
 
 const buttonStyles = {
@@ -25,8 +26,9 @@ const disabledButtonStyles = {
   cursor: "not-allowed",
 };
 
-export function LogoutButton({ className }: LogoutButtonProps) {
+export function LogoutButton({ className, authUrl }: LogoutButtonProps) {
   const [isPending, startTransition] = useTransition();
+  const authClient = setupAuthClient(authUrl);
 
   const handleSignOut = () => {
     startTransition(() => {
@@ -51,4 +53,3 @@ export function LogoutButton({ className }: LogoutButtonProps) {
     </button>
   );
 }
-
