@@ -34,11 +34,37 @@ export default defineApp([
     }
   },
   route("/api/auth/*", ({ request }) => {
-    console.log("heloooooo", request);
     return auth.handler(request);
   }),
   render(Document, [
-    route("/", () => new Response("Hello, World!")),
+    route("/", () => {
+      return (
+        <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
+          <h1>RedwoodSDK with Better Auth and Drizzle</h1>
+          <p>Welcome to this example application!</p>
+          <div style={{ margin: "1.5rem 0" }}>
+            <a 
+              href="/home" 
+              style={{
+                display: "inline-block",
+                padding: "0.5rem 1rem",
+                background: "#0070f3",
+                color: "white",
+                textDecoration: "none",
+                borderRadius: "4px",
+                fontWeight: "500"
+              }}
+            >
+              Go to Home Page
+            </a>
+          </div>
+          <p style={{ fontSize: "0.875rem", color: "#666" }}>
+            Note: The home page is protected and requires authentication.
+            You will be redirected to login if you're not signed in.
+          </p>
+        </div>
+      );
+    }),
     route("/home", [
       ({ ctx }) => {
         if (!ctx.user) {

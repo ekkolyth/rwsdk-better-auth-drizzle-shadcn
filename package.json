@@ -20,7 +20,6 @@
     "format": "prettier --write ./src",
     "migrate:new": "drizzle-kit generate",
     "migrate:dev": "wrangler d1 migrations apply DB --local",
-    "seed": "npm run worker:run ./src/db/seed.ts",
     "check": "npm run types",
     "types": "npm run tsc"
   },
