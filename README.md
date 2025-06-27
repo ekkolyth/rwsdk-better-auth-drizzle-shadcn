@@ -1,3 +1,6 @@
+# What's Different Here
+I installed Tailwind and shadcn. That's it! It was simply *just* annoying enough that I never wanted to do it again. Original Guide Follows:
+
 # RedwoodSDK Example: Better Auth with Drizzle
 
 This example demonstrates how to create a full-stack application using [RedwoodSDK](https://rwsdk.com/), [better-auth](https://www.better-auth.com/), and [Drizzle ORM](https://orm.drizzle.team).
